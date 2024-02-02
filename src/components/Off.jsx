@@ -8,7 +8,7 @@ const Off = () => {
       <div className='w-full flex h-1/2 shadow-sm shadow-gray-600 mx-10 rounded-lg mt-2 hover:scale-105 duration-500'>
         <div className='w-3/4 mt-6 pl-5 text-center'>
           <h2 className='text-lg font-normal'>Premium Earbuds</h2>
-          <button className='bg-[#00df9a] rounded-xl py-1  text-[14px] w-1/2  text-center mx-auto mt-1 hover:scale-105 duration-500'>Shop Now</button>
+          <button className='bg-[#00df9a] rounded-xl py-1  text-[14px] w-1/2  text-center mx-auto mt-1 hover:scale-105 duration-500 text-white'>Shop Now</button>
         </div>
         <img src={Earbuds} alt="" className='h-16 mt-4'/>
       </div>

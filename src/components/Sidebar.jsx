@@ -5,17 +5,17 @@ const Sidebar = () => {
       <img src={logo} alt="" className='h-24 mb-6'/>
       <h2 className="font-bold text-[20px]">Categories</h2>
       <li className='text-[16px] flex flex-col justify-center pl-1 gap-2 mt-4 cursor-pointer'>
-         <ul>Electronics</ul>
-         <ul>Computers</ul>
-         <ul>Clothes</ul>
-         <ul>Arts & Crafts</ul>
-         <ul>Toys & Games</ul>
-         <ul>Jewelry</ul>
-         <ul>Beauty & Care</ul>
-         <ul>Mother & Kids</ul>
-         <ul>Home design</ul>
-         <ul>Sports</ul>
-         <ul>Pet Supplies</ul>
+         <ul className='hover:text-[#00df9a] hover:scale-105 duration-500'>Electronics</ul>
+         <ul className='hover:text-[#00df9a] hover:scale-105 duration-500'>Computers</ul>
+         <ul className='hover:text-[#00df9a] hover:scale-105 duration-500'>Clothes</ul>
+         <ul className='hover:text-[#00df9a] hover:scale-105 duration-500'>Arts & Crafts</ul>
+         <ul className='hover:text-[#00df9a] hover:scale-105 duration-500'>Toys & Games</ul>
+         <ul className='hover:text-[#00df9a] hover:scale-105 duration-500'>Jewelry</ul>
+         <ul className='hover:text-[#00df9a] hover:scale-105 duration-500'>Beauty & Care</ul>
+         <ul className='hover:text-[#00df9a] hover:scale-105 duration-500'>Mother & Kids</ul>
+         <ul className='hover:text-[#00df9a] hover:scale-105 duration-500'>Home design</ul>
+         <ul className='hover:text-[#00df9a] hover:scale-105 duration-500'>Sports</ul>
+         <ul className='hover:text-[#00df9a] hover:scale-105 duration-500'>Pet Supplies</ul>
       </li>
     </div>
    );
