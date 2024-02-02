@@ -22,7 +22,11 @@ const Login=()=> {
             })
             .then(res=>{
                 if(res.data==="exist"){
-                    history("/home",{state:{id:email}})
+                    history("/",{state:{id:email}})
+                }
+                else if(res.data==="wrongpassword")
+                {
+                    alert("wrong password")
                 }
                 else if(res.data==="notexist"){
                     alert("User have not sign up")
