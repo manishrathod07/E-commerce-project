@@ -4,8 +4,8 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 const Footer = () => {
   return ( 
-    <div className="w-full h-24 flex">
-      <div className='w-1/2 h-full flex flex-col text-center'>
+    <div className="w-full h-24 flex mt-32 bg-gray-200">
+      <div className='w-2/6 h-full flex flex-col justify-center items-start pl-4'>
         <h2>Connect with us</h2>
         <div className='flex justify-center w- pr-8 gap-2'>
           <FacebookIcon className='text-[12px] mt-1 cursor-pointer rounded-full bg-gray-100 p-1 w-10'/>
