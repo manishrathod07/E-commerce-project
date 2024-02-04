@@ -1,4 +1,4 @@
-const { useScrollTrigger } = require("@mui/material");
+// const { useScrollTrigger } = require("@mui/material");
 const mongoose = require("mongoose");
 mongoose
   .connect("mongodb://localhost:27017/swadeshshop")
@@ -9,7 +9,7 @@ mongoose
     console.log("failed");
   });
 
-const newSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -28,6 +28,25 @@ const newSchema = new mongoose.Schema({
   },
 });
 
-const User = mongoose.model("users", newSchema);
+const categorySchema=new mongoose.Schema(
+  {
+    name:
+    {
+      type:String
+    },
+    url:
+    {
+      type:String
+    }
 
-module.exports = User;
+  }
+)
+
+const User = mongoose.model("users", userSchema);
+const Category=mongoose.model("Category",categorySchema)
+
+module.exports = 
+{
+  User:User,
+  Category:Category
+};

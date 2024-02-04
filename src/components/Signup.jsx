@@ -37,7 +37,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="login flex flex-col gap-3 items-center pt-1 w-4/12 h-auto shadow-md shadow-gray-600 mt-20 mx-auto rounded-lg">
+    <div className="login flex flex-col gap-3 items-center py-2 w-4/12 h-auto shadow-md shadow-gray-600  mx-auto rounded-lg">
       <img src={logo} alt="" className="h-16" />
       <h1 className="text-xl font-bold text-[#00df9a]">Signup</h1>
 
