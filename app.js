@@ -13,9 +13,9 @@ app.use(cors());
 app.use("public/assets", express.static(path.join(__dirname, "public")));
 
 
-app.get("/", cors(), (req, res) => {
-  // Your logic for the "/" route
-});
+// app.get("/", cors(), (req, res) => {
+//   // Your logic for the "/" route
+// });
 
 app.post("/", async (req, res) => {
   const { email, password } = req.body;
@@ -24,7 +24,10 @@ app.post("/", async (req, res) => {
     const user = await collection.User.findOne({ email: email });
 
     if (user) {
-      const passwordMatch = await bcrypt.compare(password, user.password);
+      const passwordMatch = await bcrypt.compare(password.trim(), user.password.trim());
+
+
+      console.log(passwordMatch);
 
       if (passwordMatch) {
         res.json("exist");
@@ -39,16 +42,17 @@ app.post("/", async (req, res) => {
   }
 });
 
+
 app.post("/signup", async (req, res) => {
   const { name, email, mobile, password } = req.body;
 
-  // const hashedPassword = await bcrypt.hash(password, 10);
+  const hashedPassword = await bcrypt.hash(password, 10);
 
   const data = {
     name: name,
     email: email,
     mobile: mobile,
-    password: password,
+    password: hashedPassword,
   };
 
   try {

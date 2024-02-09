@@ -3,9 +3,6 @@ import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import { useLocation,useNavigate } from "react-router-dom";
-import { useEffect, useState } from 'react';
-
-import axios from 'axios';
 
 const SearchProfile = () => {
   const location=useLocation();

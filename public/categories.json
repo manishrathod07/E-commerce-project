@@ -1,0 +1,19 @@
+[
+  { "id":1,
+    "name":"Furniture",
+    "url":"/assets/img/chair.png"
+  },
+  { "id":2,
+    "name":"Electronics",
+    "url":"/assets/img/tv.png"
+  },
+  { "id":3,
+    "name":"Wearables",
+    "url":"/assets/img/nike.png"
+  },
+  {
+    "id":4,
+    "name":"Toys",
+    "url":"/assets/img/toys.png"
+  }
+]

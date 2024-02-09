@@ -18,10 +18,11 @@ const Login=()=> {
         try{
 
             await axios.post("http://localhost:8000/",{
-                email,password
+                email,password,
             })
             .then(res=>{
-                if(res.data==="exist"){
+                if(res.data==="exist")
+                {
                     history("/",{state:{id:email}})
                 }
                 else if(res.data==="wrongpassword")
@@ -54,7 +55,7 @@ const Login=()=> {
             <form action="POST" className="w-3/4 flex flex-col gap-6 h-48 justify-center items-center">
                 <input type="email" onChange={(e) => { setEmail(e.target.value) }} placeholder="Email" className="border-2 border-gray-400 rounded-lg w-3/4 p-2 text-sm outline-none focus:placeholder:translate-x-1/2 focus:placeholder:text-[8px]  focus:placeholder:duration-1000 focus:placeholder:text-[#00df9a] focus:placeholder:opacity-50 focus:placeholder:font-semibold" />
                 <input type="password" onChange={(e) => { setPassword(e.target.value) }} placeholder="Password" className="border-2 border-gray-400 rounded-lg w-3/4 p-2 text-sm outline-none focus:placeholder:translate-x-1/2 focus:placeholder:text-[8px]  focus:placeholder:duration-1000 focus:placeholder:text-[#00df9a] focus:placeholder:opacity-50 focus:placeholder:font-semibold" />
-                <input type="submit" value="Login" onClick={submit} className="bg-[#00df9a] rounded-xl py-1  text-[14px] w-2/5  text-center hover:scale-105 duration-500 text-white"/>
+                <input type="submit" value="Login" onClick={submit} className="bg-[#00df9a] rounded-xl py-1  text-[14px] w-2/5  text-center hover:scale-105 duration-500 text-white button"/>
 
             </form>
 

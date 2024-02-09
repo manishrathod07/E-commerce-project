@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import Upper from "./Upper";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Category from "./Category";
