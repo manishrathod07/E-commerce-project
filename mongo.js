@@ -26,6 +26,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  hashedpassword: {
+    type: String,
+    required: true,
+  },
 });
 
 const categorySchema=new mongoose.Schema(

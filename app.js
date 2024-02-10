@@ -3,7 +3,7 @@ const collection = require("./mongo");
 // const path = require('path');
 const cors = require("cors");
 const bcrypt = require("bcrypt");
-const path=require('path')
+const path = require("path");
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -11,7 +11,6 @@ app.use(cors());
 
 // Serve static files from the 'public' directory
 app.use("public", express.static(path.join(__dirname, "public")));
-
 
 // app.get("/", cors(), (req, res) => {
 //   // Your logic for the "/" route
@@ -24,8 +23,10 @@ app.post("/", async (req, res) => {
     const user = await collection.User.findOne({ email: email });
 
     if (user) {
-      const passwordMatch = await bcrypt.compare(password.trim(), user.password.trim());
-
+      const passwordMatch = await bcrypt.compare(
+        password.trim(),
+        user.hashedpassword.trim()
+      );
 
       console.log(passwordMatch);
 
@@ -42,7 +43,6 @@ app.post("/", async (req, res) => {
   }
 });
 
-
 app.post("/signup", async (req, res) => {
   const { name, email, mobile, password } = req.body;
 
@@ -52,7 +52,8 @@ app.post("/signup", async (req, res) => {
     name: name,
     email: email,
     mobile: mobile,
-    password: hashedPassword,
+    password: password,
+    hashedpassword: hashedPassword,
   };
 
   try {
