@@ -37,7 +37,28 @@ const categorySchema=new mongoose.Schema(
     url:
     {
       type:String
-    }
+    },
+    detail:
+    [
+      {
+        name:
+        {
+          type:String
+        },
+        url:
+        {
+          type:String
+        },
+        cost:
+        {
+          type:Number
+        },
+        details:
+        {
+          type:String
+        }
+      }
+    ]
 
   }
 )

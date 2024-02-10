@@ -9,6 +9,7 @@ const SearchProfile = () => {
   const navigate=useNavigate();
   const { state } = location;
   const address = state && state.address;
+  console.log(state)
 
   return (
     <div className='flex justify-end w-1/2 pr-8 gap-5'>
@@ -16,8 +17,8 @@ const SearchProfile = () => {
       {address ?
         (<h1 className='text-xs'>{address}</h1>)
         : (<h1>Loading...</h1>)}
-      <LocalGroceryStoreOutlinedIcon className='text-[12px] mt-1 cursor-pointer rounded-full bg-gray-100 p-1 w-10' />
-      <FavoriteBorderOutlinedIcon className='text-[12px] mt-1 cursor-pointer rounded-full bg-gray-100 p-1 w-10' onClick={() => navigate('/cart')} />
+      <LocalGroceryStoreOutlinedIcon className='text-[12px] mt-1 cursor-pointer rounded-full bg-gray-100 p-1 w-10'onClick={() => navigate('/cart')}  />
+      <FavoriteBorderOutlinedIcon className='text-[12px] mt-1 cursor-pointer rounded-full bg-gray-100 p-1 w-10' />
       <PermIdentityOutlinedIcon className="text-[12px] mt-1 cursor-pointer rounded-full bg-gray-100 p-1 w-10" />
     </div>
   );

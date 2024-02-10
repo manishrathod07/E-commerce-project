@@ -10,7 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 // Serve static files from the 'public' directory
-app.use("public/assets", express.static(path.join(__dirname, "public")));
+app.use("public", express.static(path.join(__dirname, "public")));
 
 
 // app.get("/", cors(), (req, res) => {
@@ -73,7 +73,7 @@ app.post("/fetchcategories", async (req, res) => {
   try {
     const categories = await collection.Category.find();
     res.json(categories);
-    console.log(categories);
+    // console.log(categories);
   } catch (error) {
     console.log("error fetching" + error);
     res.status(500).json("internal server error");

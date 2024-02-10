@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Cart from './cart/Cart';
 import Navbar from './components/Navbar';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import DetailedCategory from './cart/DetailedCategory';
 
 function App() {
   return (
@@ -27,6 +28,11 @@ function App() {
                 <div className="flex flex-row h-auto">
                 <Sidebar />
                 <Cart/>
+                </div>} />
+                <Route path="/detailedcategory" element={
+                <div className="flex flex-row h-auto">
+                <Sidebar />
+                <DetailedCategory/>
                 </div>} />
                 <Route path="/login" element={
                 <div className='flex flex-col w-full'>
