@@ -1,0 +1,46 @@
+[
+  { 
+    "name":"Furniture",
+    "url":"/assets/img/chair.png"
+  },
+  { 
+    "name":"Electronics",
+    "url":"/assets/img/tv.png",
+    "detail":[
+      {
+        "id":21,
+        "name":"TV",
+        "url":"/assets/img/Electronics/tv.png"
+      },
+      {
+        "id":22,
+        "name":"Fridge",
+        "url":"/assets/img/Electronics/fridge.png"
+      },
+      {
+        "id":23,
+        "name":"Oven",
+        "url":"/assets/img/Electronics/oven.webp"
+      },
+      {
+        "id":24,
+        "name":"Fan",
+        "url":"/assets/img/Electronics/fan.png"
+      },
+      {
+        "id":25,
+        "name":"Washing Machine",
+        "url":"/assets/img/Electronics/washing.webp"
+      }
+    ]
+  },
+  { 
+    "name":"Wearables",
+    "url":"/assets/img/nike.png"
+  },
+  {
+   
+    "name":"Toys",
+    "url":"/assets/img/toys.png"
+  }
+]

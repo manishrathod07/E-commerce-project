@@ -44,20 +44,15 @@ const categorySchema=new mongoose.Schema(
     },
     detail:
     [
-      {
+      { id:
+        {
+          type:Number
+        },
         name:
         {
           type:String
         },
         url:
-        {
-          type:String
-        },
-        cost:
-        {
-          type:Number
-        },
-        details:
         {
           type:String
         }
