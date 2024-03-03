@@ -9,6 +9,7 @@ const OrderConfirmation = () => {
   const userEmail = state.topass.id;
   const [user, setUser] = useState([]);
   const [IsLoading, setIsLoading] = useState(true);
+  let total=0;
   useEffect(() => {
     console.log("User email:", userEmail); // Check if userEmail is correct
     const fetchUserProfile = async () => {
@@ -28,6 +29,10 @@ const OrderConfirmation = () => {
 
     fetchUserProfile();
   }, [userEmail]);
+  items.map((item)=>
+  {
+    total+=item.cost
+  });
   return (
     <div className="mx-auto">
       <div className="flex justify-between font-semibold mt-20 gap-60 mb-4">
@@ -52,6 +57,14 @@ const OrderConfirmation = () => {
       <div className="flex">
         <h2>Email:</h2>
         <h2>{userEmail}</h2>
+      </div>
+      <div className="flex">
+        <h2>Address:</h2>
+        <h2>{user.address}</h2>
+      </div>
+      <div className="flex">
+      <button className='bg-white rounded-xl py-1  text-[14px] w-2/5 mt-6 text-center hover:scale-105 duration-500 text-black font-semibold'>Rs.{total}</button>
+      <button className='bg-[#00df9a] rounded-xl py-1  text-[14px] w-2/5 mt-6 text-center hover:scale-105 duration-500 text-white'>Continue Purchase</button>
       </div>
     </div>
   );

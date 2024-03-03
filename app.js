@@ -45,7 +45,7 @@ app.post("/", async (req, res) => {
 });
 
 app.post("/signup", async (req, res) => {
-  const { name, email, mobile, password } = req.body;
+  const { name, email, mobile, address, password } = req.body;
 
   const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -53,6 +53,7 @@ app.post("/signup", async (req, res) => {
     name: name,
     email: email,
     mobile: mobile,
+    address:address,
     password: password,
     hashedpassword: hashedPassword,
   };
