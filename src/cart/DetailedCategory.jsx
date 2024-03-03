@@ -1,65 +1,68 @@
-import Search from "./Search";
-import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios'; // Or use a library like `fetch`
 
-const DetailedCategory = () => {
-  const location = useLocation();
-  const { state } = location;
-  const key = state && state.key;
-  console.log(key);
-
-  const [categories, setCategories] = useState([]);
+const DetailedCategory = ({ addToCart }) => { // Pass `addToCart` as a prop
+  const { categoryId } = useParams(); // Get category ID from URL
+  console.log(categoryId);
+  const [categoryDetails, setCategoryDetails] = useState(null);
 
   useEffect(() => {
-    const fetchCategories = async () => {
+    const fetchCategoryDetails = async () => {
       try {
-        const response = await axios.post(
-          "http://localhost:8000/fetchcategories"
-        );
-        setCategories(response.data);
+        const response = await axios.get(`http://localhost:8000/${categoryId}`); // Replace with your API endpoint
+        setCategoryDetails(response.data);
+        console.log(categoryDetails);
       } catch (error) {
-        console.error("Error fetching categories:", error);
+        console.error('Error fetching category details:', error);
       }
     };
 
-    fetchCategories();
-  }, []);
+    if (categoryId) { // Only fetch if category ID exists
+      fetchCategoryDetails();
+    }
+  }, [categoryId]);
 
-  let filteredCategories = [];
-  if (key) {
-    filteredCategories =
-      categories.filter((category) => category._id === key)[0]?.detail || [];
+  // Display category details if available (conditional rendering or loading state)
+  if (!categoryDetails) {
+    return <div>Loading category...</div>; // Or display a loading indicator
   }
 
-  return (
-    <div className="w-[80%] flex flex-col h-auto">
-      <Search />
-      <div className="w-full h-auto">
-        <h1 className="text-xl mb-4 ml-3">
-          {categories.filter((category) => category._id === key)[0]?.name || ""}
-        </h1>
+  // Access and display category details here, including products, descriptions, images, etc.
 
-        <div className="h-auto w-full grid grid-cols-4 gap-y-4 mx-2">
-          {filteredCategories.map((category) => (
+  const handleAddToCart = (product) => {
+    addToCart(product); // Call the prop function to add to cart
+  };
+
+  return (
+    <div>
+      <h1>{categoryDetails.name}</h1>
+      <div className="h-auto w-full grid grid-cols-4 gap-12 mt-2">
+        {/* Assuming `name` is a property in categoryDetails */}
+        {/* Check if products or a similar property exists within categoryDetails */}
+        {categoryDetails.detail &&
+          categoryDetails.detail.map((product) => (
             <div
-              className="w-44 shadow-md shadow-gray-400 rounded-lg text-center flex flex-col justify-center items-center gap-2 hover:scale-105 duration-500 cursor-pointer h-40 py-2"
-              key={category.id}
+              className="w-44 shadow-sm shadow-gray-400 rounded-lg text-center flex flex-col justify-center items-center gap-2 hover:scale-105 duration-500 cursor-pointer h-44"
+              key={product._id}
             >
               <img
-                src={category.url}
-                alt={category.name}
-                className="w-3/5 h-1/2"
-                onError={(e) =>
-                  console.error("Image loading error:", e.target.src)
-                }
+                src={product.url}
+                alt={product.name}
+                className="w-2/3 h-1/2"
+                onError={(e) => console.error("Image loading error:", e.target.src)}
               />
-              <h2 className="text-sm font-semibold">{category.name}</h2>
-              {/* <h3 className="text-xs font-normal">{category.details}</h3>
-          <h2 className="text-xs font-normal">Rs {category.cost}</h2> */}
+              <h2>{product.name}</h2>
+              <h2 className="text-sm">Rs {product.cost}</h2>
+              <button
+                className="bg-[#00df9a] rounded-xl py-1 text-[14px] w-3/5 mt-6 text-center hover:scale-105 duration-500 text-white mb-2"
+                onClick={() => handleAddToCart(product)}
+              >
+                Add to Cart
+              </button>
             </div>
           ))}
-        </div>
+        {/* Display details like images, descriptions, products, etc. based on your API response structure */}
       </div>
     </div>
   );

@@ -2,14 +2,27 @@ import LocalGroceryStoreOutlinedIcon from '@mui/icons-material/LocalGroceryStore
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const SearchProfile = () => {
   const [position, setPosition] = useState({ longitude: null, latitude: null });
   const [address, setAddress] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login status
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Track dropdown state
   const navigate = useNavigate();
+  const location = useLocation();
+  const { state } = location;
+  const userEmail=state;
+  console.log(userEmail)
+  // const email=state.id;
+  useEffect(() => {
+    // Check if email exists in state to determine login status
+    if (state) {
+      setIsLoggedIn(true);
+    }
+  }, [state]);
 
   useEffect(() => {
     if ("geolocation" in navigator) {
@@ -45,7 +58,33 @@ const SearchProfile = () => {
   }, [position]);
 
   const handleNavigateToCart = () => {
-    navigate('/cart', { state: { address } });
+    // Navigate to cart page
+    navigate('/cart', { state: userEmail });
+  };
+
+  const handleLogin = () => {
+    // Handle login
+    navigate('/login');
+    setIsLoggedIn(true);
+  };
+
+  const handleSignup = () => {
+    // Handle signup
+    navigate('/signup');
+  };
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleProfile = () => {
+    if (isLoggedIn) {
+      // Navigate to profile page if logged in
+      navigate('/profile',{state:{email:userEmail}});
+    } else {
+      // Toggle dropdown if not logged in
+      toggleDropdown();
+    }
   };
 
   return (
@@ -54,9 +93,17 @@ const SearchProfile = () => {
       {address ?
         (<h1 className='text-xs'>{address}</h1>)
         : (<h1>Loading...</h1>)}
-      <LocalGroceryStoreOutlinedIcon className='text-[12px] mt-1 cursor-pointer rounded-full bg-gray-100 p-1 w-10'  onClick={handleNavigateToCart} />
-      <FavoriteBorderOutlinedIcon className='text-[12px] mt-1 cursor-pointer rounded-full bg-gray-100 p-1 w-10'/>
-      <PermIdentityOutlinedIcon className="text-[12px] mt-1 cursor-pointer rounded-full bg-gray-100 p-1 w-10" />
+      <LocalGroceryStoreOutlinedIcon className='text-[12px] mt-1 cursor-pointer rounded-full bg-gray-100 p-1 w-10' onClick={handleNavigateToCart} />
+      <FavoriteBorderOutlinedIcon className='text-[12px] mt-1 cursor-pointer rounded-full bg-gray-100 p-1 w-10' />
+      <div className="relative">
+        <PermIdentityOutlinedIcon className="text-[12px] mt-1 cursor-pointer rounded-full bg-gray-100 p-1 w-10" onClick={handleProfile} />
+        {isDropdownOpen && (
+          <div className="absolute right-0 mt-8 w-36 bg-white border border-gray-300 rounded-lg shadow-md">
+            <button className="block w-full py-2 text-left hover:bg-gray-100 px-4" onClick={handleLogin}>Login</button>
+            <button className="block w-full py-2 text-left hover:bg-gray-100 px-4" onClick={handleSignup}>Signup</button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
