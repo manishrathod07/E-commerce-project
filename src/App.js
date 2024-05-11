@@ -12,6 +12,7 @@ import AddDetailForm from './components/AddDetailForm';
 import ProfilePage from './components/ProfilePage';
 import Search from './cart/Search';
 import OrderConfirmation from './components/Order';
+import EditProfilePage from './components/EditProfile';
 
 function App() {
   const [addedProducts, setAddedProducts] = useState([]);
@@ -89,6 +90,7 @@ function App() {
                   />
                   <Route path="/signup" element={<Signup />} />
                   <Route path="/addproducts" element={<AddDetailForm />} />
+                  <Route path="/edit-profile" element={<EditProfilePage />} />
                 </Routes>
               </div>
               <Footer />

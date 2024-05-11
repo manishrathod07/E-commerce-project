@@ -94,7 +94,7 @@ const SearchProfile = () => {
         (<h1 className='text-xs'>{address}</h1>)
         : (<h1>Loading...</h1>)}
       <LocalGroceryStoreOutlinedIcon className='text-[12px] mt-1 cursor-pointer rounded-full bg-gray-100 p-1 w-10' onClick={handleNavigateToCart} />
-      <FavoriteBorderOutlinedIcon className='text-[12px] mt-1 cursor-pointer rounded-full bg-gray-100 p-1 w-10' />
+      {/* <FavoriteBorderOutlinedIcon className='text-[12px] mt-1 cursor-pointer rounded-full bg-gray-100 p-1 w-10' /> */}
       <div className="relative">
         <PermIdentityOutlinedIcon className="text-[12px] mt-1 cursor-pointer rounded-full bg-gray-100 p-1 w-10" onClick={handleProfile} />
         {isDropdownOpen && (

@@ -1,46 +1,48 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 const ProfilePage = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const location = useLocation();
-  const userEmail = location.state.email.id; // Accessing email property from location state
+  const userEmail = location.state.email.id;
+
   console.log(userEmail);
+
   useEffect(() => {
-    console.log("User email:", userEmail); // Check if userEmail is correct
+    console.log("User email:", userEmail);
+
     const fetchUserProfile = async () => {
       try {
-        // Fetch user data from your backend server
-        const response = await axios.post(`http://localhost:8000/profile?email=${userEmail}`);
-        console.log("Response:", response.data); // Check response data
+        const response = await axios.post(
+          `http://localhost:8000/profile?email=${userEmail}`
+        );
+
+        console.log("Response:", response.data);
         setUser(response.data);
         setIsLoading(false);
       } catch (error) {
-        console.error('Error fetching user profile:', error);
+        console.error("Error fetching user profile:", error);
         setIsLoading(false);
       }
     };
-  
+
     fetchUserProfile();
   }, [userEmail]);
-  
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
   if (!user) {
-
-    
     return <div>User not found.</div>;
-    
   }
 
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-3xl font-semibold mb-4">Profile</h1>
+
       <div className="bg-white rounded-lg shadow-md p-6">
         <p className="text-lg mb-2">
           <span className="font-semibold">Name:</span> {user.name}
@@ -51,9 +53,18 @@ const ProfilePage = () => {
         <p className="text-lg mb-2">
           <span className="font-semibold">Mobile:</span> {user.mobile}
         </p>
-        {/* Render other user information */}
+        <p className="text-lg mb-2">
+          <span className="font-semibold">Address:</span> {user.address}
+        </p>
+
         <div className="mt-4">
-          {/* Add buttons or links for actions like edit profile, change password, etc. */}
+          <Link
+            to="/edit-profile"
+            state={{ user }}
+            className="bg-[#00df9a] rounded-xl text-white font-bold py-2 px-4 rounded"
+          >
+            Edit Profile
+          </Link>
         </div>
       </div>
     </div>

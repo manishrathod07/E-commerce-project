@@ -11,7 +11,7 @@ const Navbar = () => {
       <div className='flex gap-3 text-gray-600'>
      <button onClick={()=>{navigate('/');}}><HomeIcon className=' bg-gray-200 rounded-full p-1 cursor-pointer'/></button>
      <LocalGroceryStoreOutlinedIcon className=' bg-gray-200 rounded-full p-1 cursor-pointer'/>
-     <PermIdentityOutlinedIcon className=' bg-gray-200 rounded-full p-1 cursor-pointer'/>
+     <PermIdentityOutlinedIcon className=' bg-gray-200 rounded-full p-1 cursor-pointer '/>
      </div>
     </div>
    );

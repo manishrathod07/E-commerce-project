@@ -1,45 +1,50 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios'; // Or use a library like `fetch`
+import axios from 'axios';
 
-const DetailedCategory = ({ addToCart }) => { // Pass `addToCart` as a prop
-  const { categoryId } = useParams(); // Get category ID from URL
-  console.log(categoryId);
+const DetailedCategory = ({ addToCart }) => {
+  const { categoryId } = useParams();
   const [categoryDetails, setCategoryDetails] = useState(null);
+  const [addedItems, setAddedItems] = useState([]);
+  const [showNotification, setShowNotification] = useState(false);
 
   useEffect(() => {
     const fetchCategoryDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/${categoryId}`); // Replace with your API endpoint
+        const response = await axios.get(`http://localhost:8000/${categoryId}`);
         setCategoryDetails(response.data);
-        console.log(categoryDetails);
       } catch (error) {
         console.error('Error fetching category details:', error);
       }
     };
 
-    if (categoryId) { // Only fetch if category ID exists
+    if (categoryId) {
       fetchCategoryDetails();
     }
   }, [categoryId]);
 
-  // Display category details if available (conditional rendering or loading state)
-  if (!categoryDetails) {
-    return <div>Loading category...</div>; // Or display a loading indicator
-  }
-
-  // Access and display category details here, including products, descriptions, images, etc.
-
   const handleAddToCart = (product) => {
-    addToCart(product); // Call the prop function to add to cart
+    addToCart(product);
+    setAddedItems([...addedItems, product]);
+    setShowNotification(true);
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 3000);
   };
 
+  if (!categoryDetails) {
+    return <div>Loading category...</div>;
+  }
+
   return (
-    <div>
+    <div className='mt-20'>
       <h1>{categoryDetails.name}</h1>
+      {showNotification && (
+        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded fixed top-4 left-1/2 transform -translate-x-1/2" role="alert">
+          <strong>Success!</strong> Item added to cart.
+        </div>
+      )}
       <div className="h-auto w-full grid grid-cols-4 gap-12 mt-2">
-        {/* Assuming `name` is a property in categoryDetails */}
-        {/* Check if products or a similar property exists within categoryDetails */}
         {categoryDetails.detail &&
           categoryDetails.detail.map((product) => (
             <div
@@ -54,15 +59,20 @@ const DetailedCategory = ({ addToCart }) => { // Pass `addToCart` as a prop
               />
               <h2>{product.name}</h2>
               <h2 className="text-sm">Rs {product.cost}</h2>
-              <button
-                className="bg-[#00df9a] rounded-xl py-1 text-[14px] w-3/5 mt-6 text-center hover:scale-105 duration-500 text-white mb-2"
-                onClick={() => handleAddToCart(product)}
-              >
-                Add to Cart
-              </button>
+              {addedItems.includes(product) ? (
+                <button className="bg-gray-500 rounded-xl py-1 text-[14px] w-3/5 mt-6 text-center hover:scale-105 duration-500 text-white mb-2">
+                  Added
+                </button>
+              ) : (
+                <button
+                  className="bg-[#00df9a] rounded-xl py-1 text-[14px] w-3/5 mt-6 text-center hover:scale-105 duration-500 text-white mb-2"
+                  onClick={() => handleAddToCart(product)}
+                >
+                  Add to Cart
+                </button>
+              )}
             </div>
           ))}
-        {/* Display details like images, descriptions, products, etc. based on your API response structure */}
       </div>
     </div>
   );

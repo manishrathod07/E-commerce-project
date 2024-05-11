@@ -22,9 +22,9 @@ const userSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  address:{
-    type:String,
-    required:true,
+  address: {
+    type: String,
+    required: true,
   },
   password: {
     type: String,
@@ -36,45 +36,59 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-const categorySchema=new mongoose.Schema(
-  {
-    name:
+const categorySchema = new mongoose.Schema({
+  name: {
+    type: String,
+  },
+  url: {
+    type: String,
+  },
+  detail: [
     {
-      type:String
+      id: {
+        type: Number,
+      },
+      name: {
+        type: String,
+      },
+      url: {
+        type: String,
+      },
+      cost: {
+        type: Number,
+      },
     },
-    url:
+  ],
+});
+const orderSchema = new mongoose.Schema({
+  items: [
     {
-      type:String
+      name: String,
+      cost: Number,
     },
-    detail:
-    [
-      { id:
-        {
-          type:Number
-        },
-        name:
-        {
-          type:String
-        },
-        url:
-        {
-          type:String
-        },
-        cost:
-        {
-          type:Number
-        },
-      }
-    ]
+  ],
+  user: {
+    name: String,
+    mobile: String,
+    email: String,
+    address: String,
+  },
+  total: {
+    type: String,
+  },
+  orderDate: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
-  }
-)
+const Orders = mongoose.model("Orders", orderSchema);
 
 const User = mongoose.model("users", userSchema);
-const Category=mongoose.model("Category",categorySchema)
+const Category = mongoose.model("Category", categorySchema);
 
-module.exports = 
-{
-  User:User,
-  Category:Category
+module.exports = {
+  User: User,
+  Category: Category,
+  Orders: Orders,
 };
