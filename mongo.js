@@ -1,13 +1,21 @@
 // const { useScrollTrigger } = require("@mui/material");
-const mongoose = require("mongoose");
-mongoose
-  .connect("mongodb://localhost:27017/swadeshshop")
-  .then(() => {
-    console.log("mongodb connected");
-  })
-  .catch(() => {
-    console.log("failed");
-  });
+const mongoose = require('mongoose');
+
+// Define the connection string with the URL-encoded password
+const connectionString = "mongodb+srv://"+encodeURIComponent(process.env.MONGO_USERNAME) + ":" + encodeURIComponent(process.env.MONGO_PASSWORD) +
+  "@cluster0.e2oazkz.mongodb.net/swadeshshop?retryWrites=true&w=majority&appName=Cluster0";
+
+// Connect to MongoDB Atlas
+mongoose.connect(connectionString, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => {
+  console.log("MongoDB connected");
+})
+.catch((err) => {
+  console.log("Failed to connect:", err);
+});
 
 const userSchema = new mongoose.Schema({
   name: {
