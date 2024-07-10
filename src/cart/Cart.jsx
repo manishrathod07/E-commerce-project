@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Search from "./Search";
+// import Search from "./Search";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -13,25 +13,25 @@ const Cart = ({ addedProducts, updateAddedProducts }) => {
   const navigate = useNavigate();
 
   // Function to add a product to the cart from local storage
-  const handleAddToCart = (product) => {
-    const existingIndex = cartItems.findIndex((item) => item.id === product.id);
+  // const handleAddToCart = (product) => {
+  //   const existingIndex = cartItems.findIndex((item) => item.id === product.id);
 
-    if (existingIndex === -1) {
-      // Product does not exist in the cart, add it
-      setCartItems((prevCartItems) => [
-        ...prevCartItems,
-        { ...product, quantity: 1 },
-      ]);
-    } else {
-      // Product already exists in the cart, update its quantity
-      const updatedCartItems = [...cartItems];
-      updatedCartItems[existingIndex].quantity += 1;
-      setCartItems(updatedCartItems);
-    }
+  //   if (existingIndex === -1) {
+  //     // Product does not exist in the cart, add it
+  //     setCartItems((prevCartItems) => [
+  //       ...prevCartItems,
+  //       { ...product, quantity: 1 },
+  //     ]);
+  //   } else {
+  //     // Product already exists in the cart, update its quantity
+  //     const updatedCartItems = [...cartItems];
+  //     updatedCartItems[existingIndex].quantity += 1;
+  //     setCartItems(updatedCartItems);
+  //   }
 
-    // Update local storage with the new cart items
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  };
+  //   // Update local storage with the new cart items
+  //   localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  // };
 
   // Load cart items from local storage on initial render
   useEffect(() => {
@@ -85,21 +85,21 @@ const Cart = ({ addedProducts, updateAddedProducts }) => {
             <h2 className="text-md font-semibold">{product.cost}</h2>
           </div>
           <div className="1/4 flex gap-4 justify-center items-center">
-            {/* <button
+            <button
               className="w-4 h-4 bg-gray-300 flex items-center justify-center rounded-full"
               onClick={() => decrementQuantity(index)}
             >
               -
-            </button> */}
-            {/* <button className="w-4 h-4 bg-gray-300 flex items-center justify-center rounded-full">
+            </button>
+            <button className="w-4 h-4 bg-gray-300 flex items-center justify-center rounded-full">
               {product.quantity}
-            </button> */}
-            {/* <button
+            </button>
+            <button
               className="w-4 h-4 bg-gray-300 flex items-center justify-center rounded-full"
               onClick={() => incrementQuantity(index)}
             >
               +
-            </button> */}
+            </button>
           </div>
           <CancelIcon
             style={{ color: "red" }}

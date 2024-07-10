@@ -6,11 +6,11 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Footer from './components/Footer';
 import Cart from './cart/Cart';
-import Navbar from './components/Navbar';
+// import Navbar from './components/Navbar';
 import DetailedCategory from './cart/DetailedCategory';
 import AddDetailForm from './components/AddDetailForm';
 import ProfilePage from './components/ProfilePage';
-import Search from './cart/Search';
+// import Search from './cart/Search';
 import OrderConfirmation from './components/Order';
 import EditProfilePage from './components/EditProfile';
 
