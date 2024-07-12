@@ -1,21 +1,27 @@
-// const { useScrollTrigger } = require("@mui/material");
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-// Define the connection string with the URL-encoded password
-const connectionString = "mongodb+srv://"+encodeURIComponent(process.env.MONGO_USERNAME) + ":" + encodeURIComponent(process.env.MONGO_PASSWORD) +
-  "@cluster0.e2oazkz.mongodb.net/swadeshshop?retryWrites=true&w=majority&appName=Cluster0";
+// Define the connection string with hardcoded username and password
+const username = "moin";
+const password = "moin@1472"; // Replace 'yourpassword' with the actual password
+const connectionString = `mongodb+srv://${encodeURIComponent(
+  username
+)}:${encodeURIComponent(
+  password
+)}@cluster0.e2oazkz.mongodb.net/swadeshshop?retryWrites=true&w=majority&appName=Cluster0`;
+// const connectionString = `mongodb+srv://moin:moin@1472@cluster0.e2oazkz.mongodb.net/swadeshshop?retryWrites=true&w=majority&appName=Cluster0`;
 
 // Connect to MongoDB Atlas
-mongoose.connect(connectionString, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => {
-  console.log("MongoDB connected");
-})
-.catch((err) => {
-  console.log("Failed to connect:", err);
-});
+mongoose
+  .connect(connectionString, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log("MongoDB connected");
+  })
+  .catch((err) => {
+    console.log("Failed to connect:", err);
+  });
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -68,6 +74,7 @@ const categorySchema = new mongoose.Schema({
     },
   ],
 });
+
 const orderSchema = new mongoose.Schema({
   items: [
     {
@@ -91,7 +98,6 @@ const orderSchema = new mongoose.Schema({
 });
 
 const Orders = mongoose.model("Orders", orderSchema);
-
 const User = mongoose.model("users", userSchema);
 const Category = mongoose.model("Category", categorySchema);
 
