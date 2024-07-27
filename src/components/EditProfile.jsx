@@ -20,7 +20,10 @@ const EditProfilePage = () => {
     e.preventDefault();
 
     try {
-      await axios.put(`http://localhost:8000/profile/${user.email}`, formData);
+      await axios.put(
+        `https://swadeshshop.onrender.comprofile/${user.email}`,
+        formData
+      );
       setNotification("Profile updated successfully!");
       setTimeout(() => {
         setNotification("");

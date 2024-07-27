@@ -9,7 +9,7 @@ const AddProductForm = () => {
     const fetchCategories = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:8000/fetchcategories"
+          "https://swadeshshop.onrender.comfetchcategories"
         );
         setCategories(response.data);
       } catch (error) {
@@ -28,12 +28,15 @@ const AddProductForm = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8000/addproducts", {
-        name,
-        url,
-        cost,
-        categoryId: selectedCategoryId,
-      });
+      const response = await axios.post(
+        "https://swadeshshop.onrender.comaddproducts",
+        {
+          name,
+          url,
+          cost,
+          categoryId: selectedCategoryId,
+        }
+      );
 
       console.log("Product added successfully:", response.data);
       // Handle form reset or success message (optional)

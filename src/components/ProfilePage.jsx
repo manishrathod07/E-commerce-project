@@ -16,7 +16,7 @@ const ProfilePage = () => {
     const fetchUserProfile = async () => {
       try {
         const response = await axios.post(
-          `http://localhost:8000/profile?email=${userEmail}`
+          `https://swadeshshop.onrender.comprofile?email=${userEmail}`
         );
 
         console.log("Response:", response.data);

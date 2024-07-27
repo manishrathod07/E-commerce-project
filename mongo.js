@@ -1,14 +1,18 @@
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 
-// Define the connection string with hardcoded username and password
-const username = "moin";
-const password = "moin@1472"; // Replace 'yourpassword' with the actual password
+// Load environment variables from .env file
+dotenv.config();
+
+// Define the connection string with environment variables
+const username = process.env.MONGO_USERNAME;
+const password = process.env.MONGO_PASSWORD;
+const database = process.env.MONGO_DATABASE;
 const connectionString = `mongodb+srv://${encodeURIComponent(
   username
 )}:${encodeURIComponent(
   password
-)}@cluster0.e2oazkz.mongodb.net/swadeshshop?retryWrites=true&w=majority&appName=Cluster0`;
-// const connectionString = `mongodb+srv://moin:moin@1472@cluster0.e2oazkz.mongodb.net/swadeshshop?retryWrites=true&w=majority&appName=Cluster0`;
+)}@cluster0.e2oazkz.mongodb.net/${database}?retryWrites=true&w=majority&appName=Cluster0`;
 
 // Connect to MongoDB Atlas
 mongoose

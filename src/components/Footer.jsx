@@ -9,16 +9,18 @@ import { useLocation } from "react-router-dom";
 const Logo = require("../assets/img/logo.png");
 
 const Footer = () => {
-
   const [message, setMessage] = useState("");
   const location = useLocation();
   const { state } = location;
-  const email=state;
+  const email = state;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8000/api/contact", { email, message });
+      await axios.post("https://swadeshshop.onrender.comapi/contact", {
+        email,
+        message,
+      });
       setMessage("");
       // Show a success message or perform any other action
     } catch (error) {

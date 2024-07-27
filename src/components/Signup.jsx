@@ -12,19 +12,22 @@ const Signup = () => {
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
   const [message, setMessage] = useState("");
-  const [address,setAddress]=useState("");
+  const [address, setAddress] = useState("");
 
   const submit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8000/signup", {
-        name,
-        email,
-        mobile,
-        address,
-        password,
-      });
+      const response = await axios.post(
+        "https://swadeshshop.onrender.comsignup",
+        {
+          name,
+          email,
+          mobile,
+          address,
+          password,
+        }
+      );
 
       if (response.data === "exist") {
         setMessage("User already exists");
@@ -47,11 +50,46 @@ const Signup = () => {
         action="POST"
         className="w-3/4 flex flex-col gap-3 h-56 justify-center items-center"
       >
-        <input type="text" onChange={(e) => { setName(e.target.value) }} placeholder="Name" className="border-2 border-gray-400 rounded-lg w-3/4 p-2 text-sm outline-none focus:placeholder:translate-x-1/2 focus:placeholder:text-[8px]  focus:placeholder:duration-1000 focus:placeholder:text-[#00df9a] focus:placeholder:opacity-50 focus:placeholder:font-semibold" />
-        <input type="email" onChange={(e) => { setEmail(e.target.value) }} placeholder="Email" className="border-2 border-gray-400 rounded-lg w-3/4 p-2 text-sm outline-none focus:placeholder:translate-x-1/2 focus:placeholder:text-[8px]  focus:placeholder:duration-1000 focus:placeholder:text-[#00df9a] focus:placeholder:opacity-50 focus:placeholder:font-semibold" />
-        <input type="text" onChange={(e) => { setMobile(e.target.value) }} placeholder="Mobile" className="border-2 border-gray-400 rounded-lg w-3/4 p-2 text-sm outline-none focus:placeholder:translate-x-1/2 focus:placeholder:text-[8px]  focus:placeholder:duration-1000 focus:placeholder:text-[#00df9a] focus:placeholder:opacity-50 focus:placeholder:font-semibold" />
-        <input type="text" onChange={(e) => { setAddress(e.target.value) }} placeholder="Address" className="border-2 border-gray-400 rounded-lg w-3/4 p-2 text-sm outline-none focus:placeholder:translate-x-1/2 focus:placeholder:text-[8px]  focus:placeholder:duration-1000 focus:placeholder:text-[#00df9a] focus:placeholder:opacity-50 focus:placeholder:font-semibold" />
-        <input type="password" onChange={(e) => { setPassword(e.target.value) }} placeholder="Password" className="border-2 border-gray-400 rounded-lg w-3/4 p-2 text-sm outline-none focus:placeholder:translate-x-1/2 focus:placeholder:text-[8px]  focus:placeholder:duration-1000 focus:placeholder:text-[#00df9a] focus:placeholder:opacity-50 focus:placeholder:font-semibold" />
+        <input
+          type="text"
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+          placeholder="Name"
+          className="border-2 border-gray-400 rounded-lg w-3/4 p-2 text-sm outline-none focus:placeholder:translate-x-1/2 focus:placeholder:text-[8px]  focus:placeholder:duration-1000 focus:placeholder:text-[#00df9a] focus:placeholder:opacity-50 focus:placeholder:font-semibold"
+        />
+        <input
+          type="email"
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
+          placeholder="Email"
+          className="border-2 border-gray-400 rounded-lg w-3/4 p-2 text-sm outline-none focus:placeholder:translate-x-1/2 focus:placeholder:text-[8px]  focus:placeholder:duration-1000 focus:placeholder:text-[#00df9a] focus:placeholder:opacity-50 focus:placeholder:font-semibold"
+        />
+        <input
+          type="text"
+          onChange={(e) => {
+            setMobile(e.target.value);
+          }}
+          placeholder="Mobile"
+          className="border-2 border-gray-400 rounded-lg w-3/4 p-2 text-sm outline-none focus:placeholder:translate-x-1/2 focus:placeholder:text-[8px]  focus:placeholder:duration-1000 focus:placeholder:text-[#00df9a] focus:placeholder:opacity-50 focus:placeholder:font-semibold"
+        />
+        <input
+          type="text"
+          onChange={(e) => {
+            setAddress(e.target.value);
+          }}
+          placeholder="Address"
+          className="border-2 border-gray-400 rounded-lg w-3/4 p-2 text-sm outline-none focus:placeholder:translate-x-1/2 focus:placeholder:text-[8px]  focus:placeholder:duration-1000 focus:placeholder:text-[#00df9a] focus:placeholder:opacity-50 focus:placeholder:font-semibold"
+        />
+        <input
+          type="password"
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+          placeholder="Password"
+          className="border-2 border-gray-400 rounded-lg w-3/4 p-2 text-sm outline-none focus:placeholder:translate-x-1/2 focus:placeholder:text-[8px]  focus:placeholder:duration-1000 focus:placeholder:text-[#00df9a] focus:placeholder:opacity-50 focus:placeholder:font-semibold"
+        />
         <input
           type="submit"
           value="Signup"
@@ -64,7 +102,8 @@ const Signup = () => {
 
       <p className="text-sm mt-16">Already have an Account?</p>
       <Link to="/login" className="flex text-sm">
-        Login<ArrowForwardIcon />
+        Login
+        <ArrowForwardIcon />
       </Link>
     </div>
   );

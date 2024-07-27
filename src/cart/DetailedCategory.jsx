@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const DetailedCategory = ({ addToCart }) => {
   const { categoryId } = useParams();
@@ -11,10 +11,12 @@ const DetailedCategory = ({ addToCart }) => {
   useEffect(() => {
     const fetchCategoryDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/${categoryId}`);
+        const response = await axios.get(
+          `https://swadeshshop.onrender.com${categoryId}`
+        );
         setCategoryDetails(response.data);
       } catch (error) {
-        console.error('Error fetching category details:', error);
+        console.error("Error fetching category details:", error);
       }
     };
 
@@ -37,10 +39,13 @@ const DetailedCategory = ({ addToCart }) => {
   }
 
   return (
-    <div className='mt-20'>
+    <div className="mt-20">
       <h1>{categoryDetails.name}</h1>
       {showNotification && (
-        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded fixed top-4 left-1/2 transform -translate-x-1/2" role="alert">
+        <div
+          className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded fixed top-4 left-1/2 transform -translate-x-1/2"
+          role="alert"
+        >
           <strong>Success!</strong> Item added to cart.
         </div>
       )}
@@ -55,7 +60,9 @@ const DetailedCategory = ({ addToCart }) => {
                 src={product.url}
                 alt={product.name}
                 className="w-2/3 h-1/2"
-                onError={(e) => console.error("Image loading error:", e.target.src)}
+                onError={(e) =>
+                  console.error("Image loading error:", e.target.src)
+                }
               />
               <h2>{product.name}</h2>
               <h2 className="text-sm">Rs {product.cost}</h2>

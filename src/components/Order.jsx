@@ -10,14 +10,16 @@ const OrderConfirmation = () => {
   const userEmail = state?.topass?.id;
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  const [notification, setNotification] = useState('');
+  const [notification, setNotification] = useState("");
 
   let total = 0;
 
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const response = await axios.post(`http://localhost:8000/profile?email=${userEmail}`);
+        const response = await axios.post(
+          `https://swadeshshop.onrender.comprofile?email=${userEmail}`
+        );
         setUser(response.data);
         setIsLoading(false);
       } catch (error) {
@@ -37,22 +39,25 @@ const OrderConfirmation = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8000/order", {
-        items,
-        user: {
-          name: user.name,
-          mobile: user.mobile,
-          email: userEmail,
-          address: user.address,
-        },
-        total,
-        paymentOption: "cashOnDelivery",
-      });
+      const response = await axios.post(
+        "https://swadeshshop.onrender.comorder",
+        {
+          items,
+          user: {
+            name: user.name,
+            mobile: user.mobile,
+            email: userEmail,
+            address: user.address,
+          },
+          total,
+          paymentOption: "cashOnDelivery",
+        }
+      );
 
       if (response.data.message === "Order placed successfully") {
-        setNotification('Order placed successfully');
+        setNotification("Order placed successfully");
         setTimeout(() => {
-          navigate('/');
+          navigate("/");
         }, 3000); // Redirect to home page after 3 seconds
       } else {
         console.error("Error placing order:", response.data.message);

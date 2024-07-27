@@ -1,6 +1,6 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 const logo = require("../assets/img/logo.png");
 
 const Sidebar = () => {
@@ -13,7 +13,7 @@ const Sidebar = () => {
     const fetchCategories = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:8000/fetchcategories"
+          "https://swadeshshop.onrender.comfetchcategories"
         );
         setCategories(response.data);
       } catch (error) {
