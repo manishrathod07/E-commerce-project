@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose=require("mongoose")
-const collection = require("./mongo");
+const collection = require("../mongo");
 const Category = collection.Category;
 const cors = require("cors");
 const bcrypt = require("bcrypt");
