@@ -17,7 +17,7 @@ const Footer = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://swadeshshop.onrender.comapi/contact", {
+      await axios.post("https://swadeshshop.onrender.com/api/contact", {
         email,
         message,
       });

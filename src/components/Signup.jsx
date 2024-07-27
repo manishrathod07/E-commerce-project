@@ -19,7 +19,7 @@ const Signup = () => {
 
     try {
       const response = await axios.post(
-        "https://swadeshshop.onrender.comsignup",
+        "https://swadeshshop.onrender.com/signup",
         {
           name,
           email,

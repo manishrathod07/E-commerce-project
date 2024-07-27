@@ -21,7 +21,7 @@ const EditProfilePage = () => {
 
     try {
       await axios.put(
-        `https://swadeshshop.onrender.comprofile/${user.email}`,
+        `https://swadeshshop.onrender.com/profile/${user.email}`,
         formData
       );
       setNotification("Profile updated successfully!");

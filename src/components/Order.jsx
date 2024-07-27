@@ -18,7 +18,7 @@ const OrderConfirmation = () => {
     const fetchUserProfile = async () => {
       try {
         const response = await axios.post(
-          `https://swadeshshop.onrender.comprofile?email=${userEmail}`
+          `https://swadeshshop.onrender.com/profile?email=${userEmail}`
         );
         setUser(response.data);
         setIsLoading(false);
@@ -40,7 +40,7 @@ const OrderConfirmation = () => {
 
     try {
       const response = await axios.post(
-        "https://swadeshshop.onrender.comorder",
+        "https://swadeshshop.onrender.com/order",
         {
           items,
           user: {

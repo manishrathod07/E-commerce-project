@@ -9,7 +9,7 @@ const AddProductForm = () => {
     const fetchCategories = async () => {
       try {
         const response = await axios.post(
-          "https://swadeshshop.onrender.comfetchcategories"
+          "https://swadeshshop.onrender.com/fetchcategories"
         );
         setCategories(response.data);
       } catch (error) {
@@ -29,7 +29,7 @@ const AddProductForm = () => {
 
     try {
       const response = await axios.post(
-        "https://swadeshshop.onrender.comaddproducts",
+        "https://swadeshshop.onrender.com/addproducts",
         {
           name,
           url,

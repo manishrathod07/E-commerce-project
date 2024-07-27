@@ -13,7 +13,7 @@ const Sidebar = () => {
     const fetchCategories = async () => {
       try {
         const response = await axios.post(
-          "https://swadeshshop.onrender.comfetchcategories"
+          "https://swadeshshop.onrender.com/fetchcategories"
         );
         setCategories(response.data);
       } catch (error) {

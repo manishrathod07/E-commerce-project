@@ -15,7 +15,7 @@ const Login = () => {
 
     try {
       await axios
-        .post("https://swadeshshop.onrender.com", {
+        .post("https://swadeshshop.onrender.com/", {
           email,
           password,
         })

@@ -12,7 +12,7 @@ const DetailedCategory = ({ addToCart }) => {
     const fetchCategoryDetails = async () => {
       try {
         const response = await axios.get(
-          `https://swadeshshop.onrender.com${categoryId}`
+          `https://swadeshshop.onrender.com/${categoryId}`
         );
         setCategoryDetails(response.data);
       } catch (error) {
